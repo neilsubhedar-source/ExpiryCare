@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-inventory" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="retail-intelligence.html"><span>Retail Intelligence</span></a></li>
+          <li><a href="inventory.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="page-heading-row" aria-labelledby="inventory-heading"><div><h1 id="inventory-heading">Inventory</h1><p class="page-subtext">All the expiry-sensitive products you've added, in one place.</p></div><a href="add-product.html" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg> Add Product</a></section>
+    <section class="inventory-controls" aria-label="Search and filter inventory">
+      <form id="inventory-filter-form" class="inventory-filter-form" action="#" method="get" role="search">
+        <div class="form-field search-field">
+          <label for="search-products" class="visually-hidden">Search products</label>
+          <svg class="i search-icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+          <input type="search" id="search-products" name="q" placeholder="Search by name, category or batch…" autocomplete="off">
+          <button type="button" class="search-clear" id="search-clear" aria-label="Clear search" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+        </div>
+        <div class="filter-bar">
+          <fieldset class="filter-group" id="filter-category"><legend>Category</legend><div class="filter-options"><label><input type="radio" name="category" value="all" checked><span>All</span></label><label><input type="radio" name="category" value="grocery"><span>Grocery</span></label><label><input type="radio" name="category" value="medicine"><span>Medicine</span></label><label><input type="radio" name="category" value="personal-care"><span>Personal Care</span></label><label><input type="radio" name="category" value="other"><span>Other</span></label></div></fieldset>
+          <fieldset class="filter-group" id="filter-status"><legend>Status</legend><div class="filter-options"><label><input type="checkbox" name="status" value="active"><span>Active</span></label><label><input type="checkbox" name="status" value="expiring-soon"><span>Expiring Soon</span></label><label><input type="checkbox" name="status" value="expired"><span>Expired</span></label></div></fieldset>
+          <div class="form-field sort-field"><label for="sort-products">Sort by</label>
+            <select id="sort-products" name="sort"><option value="expiry-date">Expiry Date</option><option value="name">Name</option><option value="recently-added">Recently Added</option></select></div>
+          <button type="button" class="btn btn-text btn-small" id="clear-filters" hidden><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-x"/></svg> Clear filters</button>
+        </div>
+      </form>
+    </section>
+    <section class="inventory-table-section" aria-labelledby="inventory-table-heading">
+      <h2 id="inventory-table-heading" class="visually-hidden">Product list</h2>
+      <table class="inventory-table" id="inventory-table">
+        <thead><tr><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Qty</th><th scope="col">Expiry Date</th><th scope="col">Days Left</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+        <tbody id="inventory-table-body"></tbody>
+      </table>
+      <div class="empty-state" id="inventory-empty-state" hidden>
+        <span class="empty-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span><h2>Your inventory is ready for its first product.</h2>
+        <p>Add a product to start tracking expiry dates, or load demo data to explore.</p>
+        <a href="add-product.html" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg> Add Product</a>
+      </div>
+      <div class="empty-state" id="inventory-search-empty-state" hidden>
+        <span class="empty-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg></span><h2>No products match your search.</h2>
+        <p>Try a different keyword or clear your filters.</p>
+        <button type="button" class="btn btn-secondary" id="empty-clear-filters">Clear search &amp; filters</button>
+      </div>
+    </section>
+    <nav class="pagination" id="inventory-pagination" aria-label="Inventory pages">
+      <button type="button" class="pagination-btn" id="pagination-prev" disabled>Previous</button>
+      <span class="pagination-status" id="pagination-status">Page 1 of 1</span>
+      <button type="button" class="pagination-btn" id="pagination-next" disabled>Next</button>
+    </nav>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

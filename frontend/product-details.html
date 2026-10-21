@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-product-details" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="inventory.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="inventory.html">Inventory</a> <span aria-hidden="true">/</span> <span aria-current="page" id="breadcrumb-product-name">Product Details</span></nav>
+    <article class="product-details" id="product-details" data-product-id="" data-status="active">
+      <header class="pd-hero">
+        <div class="pd-identity">
+          <span class="pd-icon" id="product-details-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span>
+          <div><h1 id="product-details-name">Product Name</h1><p class="page-subtext" id="product-details-category">Category</p>
+          <span class="status-badge status-badge-active" id="product-details-status">Active</span></div>
+        </div>
+        <div class="pd-status-card">
+          <p class="panel-label">Expiry status</p>
+          <p class="pd-days" id="pd-days-number">—</p><p class="pd-days-label" id="pd-days-label">days remaining</p>
+          <div class="progress" role="img" aria-label="Share of shelf life used" id="pd-progress"><i style="width:0%"></i></div>
+          <p class="field-hint" id="pd-progress-text"></p>
+        </div>
+      </header>
+      <section class="form-group evidence-panel" aria-labelledby="evidence-heading"><h2 id="evidence-heading">Product confidence &amp; evidence</h2><p><strong>Expiry evidence:</strong> <span id="evidence-expiry-status">Will be determined from the saved record.</span></p><p><strong>Recorded source:</strong> <span id="evidence-source">User record; not independently verified.</span></p><p><strong>Missing information:</strong> <span id="evidence-missing">Check the product label.</span></p><p><strong>Next step:</strong> Verify dates against the original package. An estimated or unknown status is not a safety assessment.</p></section>
+      <div class="pd-grid">
+        <dl class="product-detail-list">
+          <div class="product-detail-row"><dt>Quantity</dt><dd id="product-details-quantity">1</dd></div>
+          <div class="product-detail-row"><dt>Purchase Date</dt><dd id="product-details-purchase-date">—</dd></div>
+          <div class="product-detail-row"><dt>Expiry Date</dt><dd id="product-details-expiry-date">—</dd></div>
+          <div class="product-detail-row"><dt>Days Remaining</dt><dd id="product-details-days-remaining">—</dd></div>
+          <div class="product-detail-row"><dt>Batch / Reference</dt><dd id="product-details-batch">—</dd></div>
+          <div class="product-detail-row product-detail-notes"><dt>Notes</dt><dd id="product-details-notes">—</dd></div>
+        </dl>
+        <div class="pd-side">
+          <section class="product-safety-note" aria-labelledby="product-safety-heading">
+            <h2 id="product-safety-heading"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> Safety note</h2>
+            <p id="product-safety-text">Check the packaging for any physical signs of degradation even before the listed expiry date. This is general information, not medical advice.</p>
+          </section>
+          <div class="pd-actions">
+            <a href="edit-product.html" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-edit"/></svg> Edit Product</a>
+            <button type="button" class="btn btn-danger" data-action="delete-product" id="delete-product-button"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-trash"/></svg> Delete</button>
+            <a href="inventory.html" class="btn btn-text">Back to Inventory</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

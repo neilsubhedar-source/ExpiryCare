@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection: users can only read and update their own document
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Products collection: users can only access their own inventory items
+    match /products/{productId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // Retail Intelligence collections
+    // Public read for active branches and catalog availability
+    match /retail_branches/{branchId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /retail_products/{productId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /retail_batches/{batchId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /retail_clearance/{clearanceId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /retail_transfers/{transferId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /retail_events/{eventId} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}

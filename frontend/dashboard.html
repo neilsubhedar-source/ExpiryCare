@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-dashboard" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="retail-intelligence.html"><span>Retail Intelligence</span></a></li>
+          <li><a href="inventory.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="dashboard-greeting" aria-labelledby="greeting-heading">
+      <div><h1 id="greeting-heading">Welcome back, <span id="dashboard-user-name">User</span></h1>
+      <p class="dashboard-context" id="dashboard-date-context">Here's your expiry overview for today.</p></div>
+      <div class="greeting-actions"><a href="inventory.html" class="btn btn-secondary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg> Inventory</a><a href="add-product.html" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg> Add Product</a></div>
+    </section>
+    <section class="dashboard-summary" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="visually-hidden">Inventory Summary</h2>
+      <div class="summary-grid" id="summary-grid"><article class="summary-card summary-card-total"><span class="summary-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span><div><p class="summary-label">Total Products</p><p class="summary-value" id="summary-total">0</p><p class="summary-note">All products you track</p></div></article><article class="summary-card summary-card-active"><span class="summary-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><div><p class="summary-label">Active / Not Yet Due</p><p class="summary-value" id="summary-active">0</p><p class="summary-note">Recorded expiry more than 30 days away</p></div></article><article class="summary-card summary-card-expiring"><span class="summary-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><div><p class="summary-label">Expiring Soon</p><p class="summary-value" id="summary-expiring">0</p><p class="summary-note">30 days or fewer left</p></div></article><article class="summary-card summary-card-expired"><span class="summary-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-xcircle"/></svg></span><div><p class="summary-label">Expired</p><p class="summary-value" id="summary-expired">0</p><p class="summary-note">Past the expiry date</p></div></article></div>
+      <p class="tracking-summary" id="tracking-summary" aria-live="polite">Verified expiry: <strong id="verified-expiry-count">0</strong> · Estimated: <strong id="estimated-expiry-count">0</strong> · Needs verification: <strong id="needs-verification-count">0</strong> · Expiry unknown: <strong id="expiry-unknown-count">0</strong></p>
+    </section>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-col-main">
+        <section class="dashboard-priority dashboard-priority-urgent" aria-labelledby="urgent-heading">
+          <div class="section-heading-row"><h2 id="urgent-heading"><span class="dot dot-expired"></span>Expired — needs attention</h2><a href="alerts.html#expired" class="section-link">View all <svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+          <ul class="alert-list" id="urgent-product-list"></ul>
+          <p class="empty-state empty-state-inline" id="urgent-empty-state" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>No expired products right now.</span></p>
+        </section>
+        <section class="dashboard-priority dashboard-priority-expiring" aria-labelledby="expiring-soon-heading">
+          <div class="section-heading-row"><h2 id="expiring-soon-heading"><span class="dot dot-expiring"></span>Expiring soon</h2><a href="alerts.html#expiring-soon" class="section-link">View all <svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+          <ul class="alert-list" id="expiring-soon-list"></ul>
+          <p class="empty-state empty-state-inline" id="expiring-soon-empty-state" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>No products are expiring soon.</span></p>
+        </section>
+        <section class="dashboard-secondary" aria-labelledby="timeline-heading">
+          <div class="section-heading-row"><h2 id="timeline-heading">Upcoming expiry timeline</h2></div>
+          <ol class="timeline" id="expiry-timeline"></ol>
+        </section>
+      </div>
+
+      <aside class="dashboard-col-side" aria-label="Insights and shortcuts">
+        <section class="insights-section" id="smart-insights" aria-labelledby="insights-heading"></section>
+        <section class="dashboard-priority dashboard-priority-active" aria-labelledby="active-heading">
+          <div class="section-heading-row"><h2 id="active-heading">Status breakdown</h2><a href="inventory.html?status=active" class="section-link">Active <svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+          <div class="stack-bar" id="status-bar" role="img" aria-label="Status breakdown"></div>
+          <p class="dashboard-note" id="active-count-note"><span id="active-count">0</span> products are currently active.</p>
+        </section>
+        <section class="dashboard-secondary" aria-labelledby="recent-heading">
+          <div class="section-heading-row"><h2 id="recent-heading">Recently added</h2><a href="inventory.html?sort=recent" class="section-link">View all <svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+          <ul class="recent-list" id="recent-product-list"></ul>
+          <p class="empty-state empty-state-inline" id="recent-empty-state" hidden>No recent activity yet.</p>
+        </section>
+        <section class="quick-actions" aria-labelledby="quick-actions-heading">
+          <h2 id="quick-actions-heading" class="visually-hidden">Quick Actions</h2>
+          <div class="quick-actions-grid">
+            <a href="add-product.html" class="quick-action-card"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span class="quick-action-label">Add Product</span></a>
+            <a href="inventory.html" class="quick-action-card"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span class="quick-action-label">Inventory</span></a>
+            <a href="retail-intelligence.html" class="quick-action-card"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><span class="quick-action-label">Retail Intelligence</span></a>
+            <a href="alerts.html" class="quick-action-card"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="quick-action-label">Alerts</span></a>
+          </div>
+        </section>
+        <section class="healthcare-tip" aria-labelledby="healthcare-tip-heading">
+          <span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg></span>
+          <div><h2 id="healthcare-tip-heading">Healthcare tip</h2>
+          <p id="healthcare-tip-text">Store medicines in a cool, dry place away from direct sunlight, and always check the expiry date before use.</p>
+          <a href="healthcare-guidance.html" class="section-link">More guidance <svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+        </section>
+      </aside>
+    </div>
+
+    <section class="dashboard-empty-state empty-state" id="dashboard-empty-state" hidden aria-labelledby="empty-state-heading">
+      <span class="empty-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span>
+      <h2 id="empty-state-heading">Your inventory is ready for its first product.</h2>
+      <p>Add an expiry-sensitive product to see your overview, alerts and insights here.</p>
+      <a href="add-product.html" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg> Add Product</a>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

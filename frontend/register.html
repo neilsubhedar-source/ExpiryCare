@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-register" class="auth-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="public-nav" aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">How It Works</a></li>
+          </ul>
+        </nav>
+        <div class="auth-actions" aria-label="Account actions"><a href="login.html" class="btn btn-text">Login</a><a href="register.html" class="btn btn-primary">Get Started</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="auth-split">
+      <aside class="auth-aside" aria-label="About ExpiryCare">
+        <div class="auth-aside-inner">
+          <p class="eyebrow eyebrow-light"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> ExpiryCare</p>
+          <h2>Start managing your products.</h2><p class="auth-aside-text">Create an account, load demo data if you like, and see how ExpiryCare keeps track for you.</p>
+          <ul class="auth-points">
+            <li><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><div><b>Automatic status</b><span>Active, Expiring Soon or Expired.</span></div></li>
+            <li><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg></span><div><b>Alerts that point to the product</b><span>Know what needs attention first.</span></div></li>
+            <li><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg></span><div><b>Built-in safety guidance</b><span>General awareness, not medical advice.</span></div></li>
+          </ul>
+        </div></aside>
+      <div class="auth-section"><div class="auth-card"><h1 id="register-heading">Create your account</h1>
+        <p class="auth-subtext">Start tracking your expiry-sensitive products in minutes.</p>
+        <form id="register-form" class="auth-form" action="#" method="post" novalidate>
+          <div id="register-form-error" class="form-error-summary" role="alert" aria-live="assertive" hidden></div>
+          <div class="form-grid-2">
+          <div class="form-field"><label for="register-name">Full Name</label>
+            <input type="text" id="register-name" name="full_name" autocomplete="name" required aria-describedby="register-name-error"><span id="register-name-error" class="field-error" aria-live="polite"></span></div>
+          <div class="form-field"><label for="register-email">Email</label>
+            <input type="email" id="register-email" name="email" autocomplete="email" required aria-describedby="register-email-error"><span id="register-email-error" class="field-error" aria-live="polite"></span></div>
+          </div>
+          <div class="form-field"><label for="register-password">Password</label>
+            <div class="password-field"><input type="password" id="register-password" name="register-password" autocomplete="new-password" required minlength="8" aria-describedby="register-password-hint register-password-error">
+              <button type="button" class="show-password-toggle" id="register-password-toggle" aria-pressed="false" aria-controls="register-password">Show</button></div>
+            <span id="register-password-hint" class="field-hint">Minimum 8 characters.</span><div class="strength" id="register-strength" aria-hidden="true"><span class="strength-bar"><i></i></span><span class="strength-label" id="register-strength-label"></span></div><span id="register-password-error" class="field-error" aria-live="polite"></span></div>
+          <div class="form-field"><label for="register-confirm-password">Confirm Password</label>
+            <div class="password-field"><input type="password" id="register-confirm-password" name="register-confirm-password" autocomplete="new-password" required aria-describedby="register-confirm-password-error">
+              <button type="button" class="show-password-toggle" id="register-confirm-password-toggle" aria-pressed="false" aria-controls="register-confirm-password">Show</button></div>
+            <span id="register-confirm-password-error" class="field-error" aria-live="polite"></span></div>
+          <div class="form-field form-field-checkbox"><input type="checkbox" id="register-terms" name="terms" required aria-describedby="register-terms-error"><label for="register-terms">I agree to the Terms of Use and Privacy Policy.</label><span id="register-terms-error" class="field-error" aria-live="polite"></span></div>
+          <div class="form-actions"><button type="submit" class="btn btn-primary btn-full btn-large">Create account</button></div>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p></div></div>
+    </section>
+  </main>
+  <footer class="site-footer site-footer-minimal"><div class="footer-inner"><p class="footer-copyright">&copy; 2026 ExpiryCare. College mini-project.</p></div></footer>
+</body>
+</html>

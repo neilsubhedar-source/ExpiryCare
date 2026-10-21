@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpiryCare — Stay ahead of every expiry</title>
+  <meta name="description" content="Track medicines, groceries and personal-care products before they expire.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-landing">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="public-nav" aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">How It Works</a></li>
+            <li><a href="retail-catalog.html">Find Products in Stores</a></li>
+          </ul>
+        </nav>
+        <div class="auth-actions" aria-label="Account actions"><a href="login.html" class="btn btn-text">Login</a><a href="register.html" class="btn btn-primary">Get Started <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> Smart healthcare tracking</p>
+          <h1 id="hero-heading">Stay ahead of every expiry.</h1>
+          <p class="hero-subtext">ExpiryCare keeps a digital record of your medicines, groceries and personal-care products, so nothing gets used, or thrown away, without you knowing its status.</p>
+          <div class="hero-actions">
+            <a href="register.html" class="btn btn-primary btn-large">Get Started <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+            <a href="about.html" class="btn btn-secondary btn-large">See how it works</a>
+          </div>
+          <ul class="hero-points">
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Active, Expiring Soon and Expired — automatically</li>
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Alerts linked straight to the product</li>
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Runs in your browser, no setup</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" id="hero-visual" aria-label="Preview of the ExpiryCare dashboard">
+          <div class="preview-card" id="preview-card">
+            <div class="preview-bar"><span></span><span></span><span></span><p>ExpiryCare · Dashboard</p></div>
+            <div class="preview-body">
+              <p class="preview-greeting">Here's your expiry overview</p>
+              <div class="preview-stats">
+                <div class="pstat"><b id="lp-total">0</b><span>Total</span></div>
+                <div class="pstat pstat-active"><b id="lp-active">0</b><span>Active</span></div>
+                <div class="pstat pstat-soon"><b id="lp-soon">0</b><span>Expiring</span></div>
+                <div class="pstat pstat-expired"><b id="lp-expired">0</b><span>Expired</span></div>
+              </div>
+              <ul class="preview-list" id="lp-list" aria-label="Sample products"></ul>
+              <p class="preview-foot">Demo data — the same examples the app can load for you.</p>
+            </div>
+          </div>
+          <div class="float-card float-alert" aria-hidden="true">
+            <span class="float-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg></span>
+            <div><b id="lp-alert-title">Paracetamol 500mg</b><span id="lp-alert-text">Expires in 3 days</span></div>
+          </div>
+          <div class="float-card float-health" aria-hidden="true">
+            <div class="ring" id="lp-ring" style="--p:0"><span id="lp-health">0%</span></div>
+            <div><b>Inventory health</b><span>Share with 30+ days left</span></div>
+          </div>
+        </div>
+      </div>
+      <ul class="audience-strip" aria-label="Built for">
+        <li>Households &amp; families</li><li>Students</li><li>Working professionals</li><li>Hostels</li><li>Pharmacies</li><li>Small clinics</li>
+      </ul>
+    </section>
+
+    <section class="band" aria-labelledby="problem-heading">
+      <div class="section-inner">
+        <div class="section-head"><h2 id="problem-heading">Expiry dates are easy to miss</h2>
+        <p class="section-lead">Most households and small institutions rely on memory or scattered notes. That creates real, everyday problems.</p></div>
+        <div class="problem-grid">
+          <article class="problem-card reveal-item"><span class="tile tile-warn"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><h3>Manual tracking is easy to forget</h3><p>Sticky notes and mental reminders don't scale once the number of products grows.</p></article>
+          <article class="problem-card reveal-item"><span class="tile tile-warn"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span><h3>Products get forgotten</h3><p>Items pushed to the back of a shelf are often rediscovered only after they've expired.</p></article>
+          <article class="problem-card reveal-item"><span class="tile tile-danger"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg></span><h3>Health risk from expired items</h3><p>Using expired medicines or personal-care products unknowingly can pose avoidable health risks.</p></article>
+          <article class="problem-card reveal-item"><span class="tile tile-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg></span><h3>Unnecessary waste and cost</h3><p>Products discarded after expiry represent money and resources that didn't need to be lost.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-tint" aria-labelledby="how-heading">
+      <div class="section-inner">
+        <div class="section-head"><h2 id="how-heading">Add. Track. Get alerted. Act.</h2>
+        <p class="section-lead">Four simple steps from a new product to a timely decision.</p></div>
+        <ol class="flow">
+          <li class="flow-step reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></span><h3>Add products</h3><p>Record the name, category, purchase date and expiry date.</p></li>
+          <li class="flow-step reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span><h3>Track expiry dates</h3><p>Products are grouped by expiry status automatically.</p></li>
+          <li class="flow-step reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg></span><h3>Receive alerts</h3><p>See what is expired, expiring soon or coming up.</p></li>
+          <li class="flow-step reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><h3>Take timely action</h3><p>Use, replace or discard items before they become a risk.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="track-heading">
+      <div class="section-inner split">
+        <div class="split-copy">
+          <h2 id="track-heading">One clear view of everything you own</h2>
+          <p class="section-lead">Total, active, expiring soon and expired — always up to date, calculated from your own product dates.</p>
+          <ul class="tick-list">
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Search, filter and sort your whole inventory</li>
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Rule-based insights from your saved products</li>
+            <li><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Choose how early you want to be reminded</li>
+          </ul>
+          <a href="register.html" class="btn btn-primary">Create your account <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="mini-grid" aria-label="Example status cards (demo data)">
+          <div class="mini-card mini-total reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg></span><b id="lt-total">0</b><span>Total products</span></div>
+          <div class="mini-card mini-active reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><b id="lt-active">0</b><span>Safe</span></div>
+          <div class="mini-card mini-soon reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><b id="lt-soon">0</b><span>Expiring soon</span></div>
+          <div class="mini-card mini-expired reveal-item"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-xcircle"/></svg></span><b id="lt-expired">0</b><span>Expired</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-tint" aria-labelledby="guide-heading">
+      <div class="section-inner">
+        <div class="section-head"><h2 id="guide-heading">Safety guidance, built in</h2>
+        <p class="section-lead">General awareness on storing and handling expiry-sensitive products.</p></div>
+        <div class="guide-grid">
+          <div class="guide-mini reveal-item"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg><h3>Medicines</h3><p>Storage and packaging basics.</p></div>
+          <div class="guide-mini reveal-item"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-food"/></svg><h3>Food</h3><p>Dates and signs of spoilage.</p></div>
+          <div class="guide-mini reveal-item"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg><h3>Personal care</h3><p>Sunscreen, cosmetics, skincare.</p></div>
+          <div class="guide-mini reveal-item"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-thermo"/></svg><h3>Storage &amp; safety</h3><p>Regular inventory reviews.</p></div>
+        </div>
+        <div class="disclaimer-note"><div class="section-inner"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><p><strong>Please note:</strong> Healthcare and product-safety guidance provided within ExpiryCare is for general informational awareness only and does not replace professional medical advice. Always consult a qualified healthcare professional for medical concerns.</p></div></div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-heading">
+      <div class="cta-inner reveal-item">
+        <h2 id="cta-heading">Start staying ahead of expiry today.</h2>
+        <p>Create a free prototype account and load demo data to explore every feature.</p>
+        <div class="hero-actions"><a href="register.html" class="btn btn-light btn-large">Get Started <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a><a href="login.html" class="btn btn-ghost btn-large">I already have an account</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+        <p class="footer-purpose">A smart expiry tracker for households, students and small institutions.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">How It Works</a></li>
+            <li><a href="retail-catalog.html">Find Products in Stores</a></li>
+          <li><a href="healthcare-guidance.html">Healthcare Guidance</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+      <p class="footer-disclaimer">Healthcare guidance is informational only and is not a substitute for professional medical advice.</p>
+      <p class="footer-copyright">&copy; 2026 ExpiryCare. College mini-project.</p>
+    </div>
+  </footer>
+</body>
+</html>

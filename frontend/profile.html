@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-profile" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="inventory.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link" aria-current="page">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="page-heading-row" aria-labelledby="profile-heading"><div><h1 id="profile-heading">Profile &amp; Settings</h1><p class="page-subtext">Manage your account details and preferences.</p></div></section>
+    <div class="profile-layout">
+      <aside class="profile-card">
+        <span class="profile-avatar" id="profile-avatar" aria-hidden="true"></span>
+        <h2 id="profile-card-name">Your name</h2><p id="profile-card-email" class="page-subtext">email</p>
+        <p class="profile-stat"><b id="profile-product-count">0</b> products tracked</p>
+        <section class="settings-section-account" aria-labelledby="account-heading">
+          <h2 id="account-heading" class="visually-hidden">Account</h2>
+          <a href="index.html" class="btn btn-secondary btn-full logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg> Logout</a>
+        </section>
+      </aside>
+      <div class="profile-main">
+        <section class="settings-section" aria-labelledby="profile-details-heading">
+          <h2 id="profile-details-heading"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-user"/></svg> Personal Information</h2>
+          <form id="profile-form" class="settings-form" action="#" method="post" novalidate>
+            <div class="form-grid-2">
+              <div class="form-field"><label for="profile-name">Name</label><input type="text" id="profile-name" name="full_name" autocomplete="name" required></div>
+              <div class="form-field"><label for="profile-email">Email</label><input type="email" id="profile-email" name="email" autocomplete="email" required></div>
+            </div>
+            <div class="form-actions"><button type="submit" class="btn btn-primary">Save Profile</button></div>
+          </form>
+        </section>
+        <section class="settings-section" aria-labelledby="notification-preferences-heading">
+          <h2 id="notification-preferences-heading"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg> Notification Preferences</h2>
+          <form id="notification-preferences-form" class="settings-form" action="#" method="post">
+            <fieldset class="filter-group"><legend>Expiry reminder timing</legend><div class="filter-options"><label><input type="checkbox" name="alert_threshold" value="7"><span>7 days before</span></label><label><input type="checkbox" name="alert_threshold" value="3" checked><span>3 days before</span></label><label><input type="checkbox" name="alert_threshold" value="1"><span>1 day before</span></label></div></fieldset>
+            <div class="form-actions"><button type="submit" class="btn btn-primary">Save Preferences</button></div>
+          </form>
+        </section>
+        <section class="settings-section" aria-labelledby="app-preferences-heading">
+          <h2 id="app-preferences-heading"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg> Application Preferences</h2>
+          <form id="app-preferences-form" class="settings-form" action="#" method="post">
+            <div class="form-field"><label for="default-inventory-sort">Default inventory sort order</label>
+              <select id="default-inventory-sort" name="default_sort"><option value="expiry-date">Expiry Date</option><option value="name">Name</option><option value="recently-added">Recently Added</option></select></div>
+            <div class="form-actions"><button type="submit" class="btn btn-primary">Save Preferences</button></div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

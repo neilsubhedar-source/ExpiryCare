@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-alerts" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="retail-intelligence.html"><span>Retail Intelligence</span></a></li>
+          <li><a href="inventory.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="page-heading-row" aria-labelledby="alerts-heading"><div><h1 id="alerts-heading">Expiry Alerts</h1><p class="page-subtext">Products that need your attention, grouped by urgency.</p></div></section>
+    <div class="alerts-layout">
+      <div class="alerts-main">
+        <section class="alert-group alert-group-expired" id="expired" aria-labelledby="expired-heading">
+        <div class="group-head"><span class="group-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-xcircle"/></svg></span><div><h2 id="expired-heading">Expired <span class="count-pill" id="expired-count">0</span></h2><p class="group-desc">Past the expiry date. Do not use these.</p></div></div>
+        <ul class="alert-list"></ul>
+        <p class="empty-state empty-state-inline" id="expired-empty-state" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Nothing here. You're all clear.</span></p></section>
+        <section class="alert-group alert-group-expiring" id="expiring-soon" aria-labelledby="expiring-soon-heading">
+        <div class="group-head"><span class="group-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><div><h2 id="expiring-soon-heading">Expiring Soon <span class="count-pill" id="expiring-soon-count">0</span></h2><p class="group-desc">Inside your reminder window. Use or replace.</p></div></div>
+        <ul class="alert-list"></ul>
+        <p class="empty-state empty-state-inline" id="expiring-soon-empty-state" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Nothing here. You're all clear.</span></p></section>
+        <section class="alert-group alert-group-upcoming" id="upcoming" aria-labelledby="upcoming-heading">
+        <div class="group-head"><span class="group-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span><div><h2 id="upcoming-heading">Upcoming <span class="count-pill" id="upcoming-count">0</span></h2><p class="group-desc">Outside your window but within 30 days.</p></div></div>
+        <ul class="alert-list"></ul>
+        <p class="empty-state empty-state-inline" id="upcoming-empty-state" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span>Nothing here. You're all clear.</span></p></section>
+        <section class="empty-state" id="alerts-empty-state" hidden><span class="empty-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg></span><h2>You're all clear.</h2><p>No expiry alerts at the moment.</p></section>
+      </div>
+      <aside class="alert-preferences" aria-labelledby="alert-preferences-heading">
+        <span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg></span>
+        <h2 id="alert-preferences-heading">Alert preferences</h2>
+        <p class="page-subtext">Choose how far in advance you'd like to be notified.</p>
+        <form id="alert-preferences-form" action="#" method="post">
+          <fieldset class="filter-group"><legend>Notify me before expiry</legend>
+            <div class="filter-options filter-options-stack">
+              <label><input type="checkbox" name="alert_threshold" value="7"><span>7 days before</span></label>
+              <label><input type="checkbox" name="alert_threshold" value="3" checked><span>3 days before</span></label>
+              <label><input type="checkbox" name="alert_threshold" value="1"><span>1 day before</span></label>
+            </div></fieldset>
+          <div class="form-actions"><button type="submit" class="btn btn-primary btn-full">Save Preferences</button></div>
+        </form>
+      </aside>
+    </div>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

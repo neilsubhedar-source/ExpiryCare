@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Guidance — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-healthcare-guidance" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="retail-intelligence.html"><span>Retail Intelligence</span></a></li>
+          <li><a href="inventory.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="page-heading-row" aria-labelledby="guidance-heading"><div><h1 id="guidance-heading">Healthcare Guidance</h1><p class="page-subtext">General awareness on storing and handling expiry-sensitive products.</p></div></section>
+    <section class="disclaimer-note" aria-labelledby="guidance-disclaimer-heading">
+      <h2 id="guidance-disclaimer-heading" class="visually-hidden">Important note</h2>
+      <svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><p><strong>Please note:</strong> This information is for general awareness only and is not a substitute for professional medical advice. Always consult a qualified healthcare professional for medical concerns.</p>
+    </section>
+    <div class="guidance-grid"><section class="guidance-topic" aria-labelledby="storage-heading"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg></span><h2 id="storage-heading">Medicine Storage</h2><p>Most medicines should be kept in a cool, dry place away from direct sunlight and humidity, unless the label specifies refrigeration. Keep medicines in their original packaging so the expiry date and batch information remain visible.</p></section><section class="guidance-topic" aria-labelledby="food-safety-heading"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-food"/></svg></span><h2 id="food-safety-heading">Food / Product Safety</h2><p>Check both the expiry date and the condition of packaging before use. Discard groceries that show signs of spoilage even if the expiry date has not yet passed.</p></section><section class="guidance-topic" aria-labelledby="personal-care-heading"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg></span><h2 id="personal-care-heading">Personal Care Product Safety</h2><p>Personal-care products such as sunscreen, cosmetics and skincare items can lose effectiveness or become unsafe after their expiry date. Note the “period after opening” symbol on packaging where present.</p></section><section class="guidance-topic" aria-labelledby="awareness-heading"><span class="tile"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-thermo"/></svg></span><h2 id="awareness-heading">Expiry Awareness</h2><p>Regularly reviewing your inventory helps you catch products approaching expiry before they become a health risk or go to waste. Use the Expiry Alerts page to stay on top of items that need attention.</p></section></div>
+    <section class="form-group guidance-chat" aria-labelledby="guidance-chat-heading">
+      <h2 id="guidance-chat-heading">Healthcare Guidance Assistant</h2>
+      <p class="field-hint">Ask about label terminology, storage, expiry uncertainty, or barcodes. The assistant uses live AI if configured; otherwise it answers from an offline guidance knowledge base. It cannot certify product safety.</p>
+      <div id="guidance-chat-log" class="guidance-chat-log" aria-live="polite"><p class="chat-message">ExpiryCare: I can help explain product-label information and safe next steps. I cannot certify that an item is safe.</p></div>
+      <form id="guidance-chat-form" class="form-actions"><label class="visually-hidden" for="guidance-chat-input">Your guidance question</label><input id="guidance-chat-input" type="text" maxlength="1000" placeholder="e.g. What if the expiry date is missing?" required><button type="submit" class="btn btn-primary">Ask</button></form>
+    </section>
+    <section class="guidance-grid" aria-label="More expiry guidance">
+      <section class="guidance-topic"><h2>Reading dates and batch codes</h2><p>Look for EXP, Use by, Best before, MFG or Manufactured on. Batch/lot codes identify a production run; do not assume a code can be decoded without the manufacturer's method.</p></section>
+      <section class="guidance-topic"><h2>When a date is missing</h2><p>Keep the item marked Expiry Unknown and set a review reminder. Check the full package, contact the manufacturer, or ask a pharmacist about medicines. A reminder is not an expiry date.</p></section>
+      <section class="guidance-topic"><h2>Storage and disposal</h2><p>Follow the product label and local disposal guidance. Keep medicines in original packaging. Do not pour unknown chemicals down drains or mix them; seek local hazardous-waste advice.</p></section>
+      <section class="guidance-topic"><h2>Common misconception</h2><p>A barcode usually identifies a product and does not necessarily contain its expiry date. Product recognition or a readable label is not proof of safety.</p></section>
+    </section>
+    <section class="guidance-cta"><div><h2>Put it into practice</h2><p>Check which of your products need attention right now.</p></div><a href="alerts.html" class="btn btn-primary">View alerts <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></section>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>

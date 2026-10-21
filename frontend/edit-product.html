@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product — ExpiryCare</title>
+  <meta name="description" content="ExpiryCare — smart expiry tracker and healthcare guidance.">
+  <meta name="theme-color" content="#0f2740">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body id="page-edit-product" class="app-body">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="dashboard.html" class="brand" aria-label="ExpiryCare home"><span class="brand-mark"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg></span><span class="brand-name">ExpiryCare</span></a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu"><svg class="i i-menu" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+      <div class="nav-panel" id="nav-panel">
+        <nav class="app-nav" aria-label="Primary">
+          <ul class="nav-list">
+          <li><a href="dashboard.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>Dashboard</span></a></li>
+          <li><a href="inventory.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box"/></svg><span>Inventory</span></a></li>
+          <li><a href="add-product.html" aria-current="page"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg><span>Add Product</span></a></li>
+          <li><a href="alerts.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span>Alerts</span></a></li>
+          <li><a href="healthcare-guidance.html"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span>Guidance</span></a></li>
+          </ul>
+        </nav>
+        <div class="user-menu" aria-label="Account">
+          <a href="profile.html" class="user-menu-link">
+            <span class="user-avatar" aria-hidden="true"></span>
+            <span class="user-name" id="current-user-name">Your Profile</span>
+          </a>
+          <a href="index.html" class="btn btn-text logout-link"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg><span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="app-main">
+    <section class="page-heading-row" aria-labelledby="edit-product-heading"><div><h1 id="edit-product-heading">Edit Product</h1><p class="page-subtext">Update the details. The expiry status recalculates automatically.</p></div></section>
+    <section class="form-section form-layout">
+      <form id="edit-product-form" class="product-form" action="#" method="post" data-product-id="" novalidate>
+        <div id="edit-product-form-error" class="form-error-summary" role="alert" aria-live="assertive" hidden></div>
+        <fieldset class="form-group"><legend><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-box"/></svg> Product Information</legend>
+          <div class="form-grid-2">
+            <div class="form-field span-2"><label for="edit-product-name">Product Name</label><input type="text" id="edit-product-name" name="product_name" required placeholder="e.g. Paracetamol 500mg" aria-describedby="edit-product-name-error"><span id="edit-product-name-error" class="field-error" aria-live="polite"></span></div>
+            <div class="form-field"><label for="edit-product-category">Category</label>
+              <select id="edit-product-category" name="category" required aria-describedby="edit-product-category-error"><option value="" selected disabled>Select a category</option><option value="grocery">Grocery</option><option value="medicine">Medicine</option><option value="personal-care">Personal Care</option><option value="other">Other</option></select><span id="edit-product-category-error" class="field-error" aria-live="polite"></span></div>
+            <div class="form-field"><label for="edit-product-quantity">Quantity</label><input type="number" id="edit-product-quantity" name="quantity" min="1" step="1" required aria-describedby="edit-product-quantity-error"><span id="edit-product-quantity-error" class="field-error" aria-live="polite"></span></div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group"><legend><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg> Dates &amp; Expiry</legend>
+          <div class="form-grid-2">
+            <div class="form-field"><label for="edit-purchase-date">Purchase Date</label><input type="date" id="edit-purchase-date" name="purchase_date" aria-describedby="edit-purchase-date-error"><span id="edit-purchase-date-error" class="field-error" aria-live="polite"></span></div>
+            <div class="form-field"><label for="edit-expiry-date">Expiry Date</label><input type="date" id="edit-expiry-date" name="expiry_date" aria-describedby="edit-expiry-date-error"><span id="edit-expiry-date-error" class="field-error" aria-live="polite"></span></div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group"><legend><svg class="i i-sm" aria-hidden="true" focusable="false"><use href="#i-info"/></svg> Additional Details</legend>
+          <div class="form-field"><label for="edit-product-batch-number">Batch / Reference Number</label><input type="text" id="edit-product-batch-number" name="batch_number" aria-describedby="edit-product-batch-number-hint"><span id="edit-product-batch-number-hint" class="field-hint">Optional. Useful for medicines with a batch number.</span></div>
+          <div class="form-field"><label for="edit-product-notes">Notes</label><textarea id="edit-product-notes" name="notes" rows="3" aria-describedby="edit-product-notes-hint"></textarea><span id="edit-product-notes-hint" class="field-hint">Optional. E.g. dosage, storage instructions, or brand.</span></div>
+        </fieldset>
+        <div class="form-actions"><button type="submit" class="btn btn-primary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Save Changes</button><a href="product-details.html" class="btn btn-text">Cancel</a><button type="button" class="btn btn-danger btn-push" data-action="delete-product"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-trash"/></svg> Delete Product</button></div>
+      </form>
+      <aside class="expiry-panel" id="expiry-panel" data-state="empty" aria-live="polite">
+        <p class="panel-label">Live expiry preview</p>
+        <span class="expiry-ring" id="expiry-panel-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span>
+        <p class="expiry-panel-title" id="expiry-panel-title">Pick an expiry date</p>
+        <p class="expiry-panel-text" id="expiry-panel-text">The status and days remaining will appear here.</p>
+        <div class="expiry-panel-days"><strong id="expiry-panel-days">—</strong><span>days remaining</span></div>
+        <ul class="expiry-legend"><li><span class="dot dot-active"></span>Active — more than 30 days</li><li><span class="dot dot-expiring"></span>Expiring Soon — 30 days or fewer</li><li><span class="dot dot-expired"></span>Expired — past the date</li></ul>
+      </aside>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
+  </footer>
+</body>
+</html>
