@@ -515,3 +515,45 @@ h3 { letter-spacing: -.025em; }
   .product-thumb { width: 46px; height: 46px; flex-basis: 46px; border-radius: 11px; }
   .product-cell { gap: 10px; }
 }
+
+/* Retail Intelligence + customer catalogue: cohesive light premium treatment */
+.ri-wrap, .catalog-wrap { color: var(--ink); }
+.ri-head, .catalog-head { padding: clamp(28px, 5vw, 54px); background: linear-gradient(135deg,#f0f5ed 0%,#fbfcf9 68%,#edf3f5 100%); border: 1px solid var(--line); border-radius: 26px; margin-bottom: 22px; }
+.ri-head h1, .catalog-head h1 { max-width: 780px; margin: .3em 0; }
+.ri-head > div:last-child { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.ri-btn { border: 1px solid var(--line-strong); background: white; color: var(--teal-dark); border-radius: 999px; padding: 11px 17px; font-weight: 650; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.ri-btn:hover { transform: translateY(-1px); box-shadow: var(--sh-sm); }
+.ri-btn-primary { background: var(--teal-dark); color:white; border-color:var(--teal-dark); }
+.ri-panel { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: clamp(18px, 3vw, 28px); margin: 20px 0; box-shadow: var(--sh-sm); }
+.ri-panel h2 { font-size: clamp(1.25rem,2vw,1.7rem); }
+.ri-table-wrap, .catalog-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; }
+.ri-table, .catalog-table { width:100%; border-collapse:collapse; min-width:660px; }
+.ri-table th, .catalog-table th { background:#f3f6f1; color:#5d6d62; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; }
+.ri-table th, .ri-table td, .catalog-table th, .catalog-table td { padding:14px 16px; text-align:left; border-bottom:1px solid #e9eee7; }
+.ri-table tr:last-child td, .catalog-table tr:last-child td { border-bottom:0; }
+.ri-table tbody tr:hover, .catalog-table tbody tr:hover { background:#fafcf9; }
+.ri-form { display:flex; flex-wrap:wrap; gap:14px; align-items:end; margin-top:20px; }
+.ri-form label, .catalog-search label { display:grid; gap:7px; color:#52645a; font-size:.86rem; font-weight:600; }
+.ri-form input, .ri-form select, .catalog-search input, .catalog-search select { min-height:45px; border:1px solid var(--line-strong)!important; border-radius:11px!important; padding:10px 13px!important; background:#fff; color:var(--ink); font:inherit; }
+.ri-editorial { display:grid; grid-template-columns:minmax(240px,.8fr) minmax(0,1.4fr); gap:28px; align-items:center; padding:24px 0 30px; }
+.ri-editorial-copy { padding:10px 0; }
+.ri-editorial-copy h2 { margin:.45em 0; }
+.ri-editorial-copy p:last-child { color:var(--muted); line-height:1.75; }
+.ri-editorial-photos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.ri-editorial-photos figure { overflow:hidden; border:1px solid var(--line); border-radius:16px; background:white; margin:0; }
+.ri-editorial-photos img { display:block; width:100%; height:150px; object-fit:cover; background:#eef2eb; }
+.ri-editorial-photos figcaption { padding:11px 12px; font-size:.83rem; font-weight:650; color:#52645a; }
+.catalog-search { display:flex; flex-wrap:wrap; gap:16px; padding:20px; border:1px solid var(--line); background:white; border-radius:18px; margin:18px 0; }
+.catalog-search label { flex:1; min-width:160px; }
+.catalog-search label:first-child { flex:2; }
+.catalog-note { color:var(--muted); line-height:1.7; }
+@media(max-width:760px) {
+  .ri-editorial { grid-template-columns:1fr; }
+  .ri-editorial-photos img { height:125px; }
+  .ri-head, .catalog-head { border-radius:20px; padding:24px; }
+}
+@media(max-width:460px) {
+  .ri-editorial-photos { gap:8px; }
+  .ri-editorial-photos img { height:95px; }
+  .ri-editorial-photos figcaption { padding:9px; font-size:.74rem; }
+}
