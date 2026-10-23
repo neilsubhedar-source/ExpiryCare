@@ -895,6 +895,27 @@ function shortDays(days) {
     return days === 0 ? "Today" : pluralDays(days);
 }
 
+function getProductImage(product) {
+    const name = String(product.name || "").toLowerCase();
+    const category = String(product.category || "").toLowerCase();
+    if (/milk|dairy|yogurt|curd|cheese|butter/.test(name)) {
+        return { src: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=180&h=180&q=80", alt: "Milk and dairy product" };
+    }
+    if (/cream|cosmetic|makeup|lipstick|serum|sunscreen|shampoo|lotion|skincare|moistur/.test(name) || /personal.?care|cosmetic|beauty/.test(category)) {
+        return { src: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=180&h=180&q=80", alt: "Personal-care product" };
+    }
+    if (/tablet|medicine|medicin|paracetamol|syrup|capsule|vitamin|antacid|ointment/.test(name) || /medicine|pharma|health/.test(category)) {
+        return { src: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=180&h=180&q=80", alt: "Medicine packaging" };
+    }
+    if (/bread|snack|biscuit|rice|flour|cereal|juice|coffee|tea|grocery|pasta|sauce|food/.test(name) || /grocery|food|beverage/.test(category)) {
+        return { src: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=180&h=180&q=80", alt: "Fresh grocery products" };
+    }
+    if (/clean|detergent|dishwash|surface|disinfect/.test(name) || /household|cleaning/.test(category)) {
+        return { src: "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=180&h=180&q=80", alt: "Household care product" };
+    }
+    return { src: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=180&h=180&q=80", alt: "Everyday product" };
+}
+
 function renderProductRow(product) {
     const status = getStatus(product);
     const days = getDaysRemaining(product);
@@ -902,7 +923,7 @@ function renderProductRow(product) {
     const term = inventorySearchTerm;
     const chip = status === "expired" ? "is-expired" : (status === "expiring-soon" ? "is-expiring" : "");
     return '<tr class="product-row" data-product-id="' + esc(product.id) + '" data-status="' + status + '">' +
-        '<td data-label="Product"><div class="product-cell"><span class="cat-icon">' + productIcon(product.category) + '</span><div>' +
+        '<td data-label="Product"><div class="product-cell"><img class="product-thumb" src="' + getProductImage(product).src + '" alt="" loading="lazy" onerror="this.hidden=true"><div class="product-cell-copy">' +
         '<a href="product-details.html?id=' + id + '">' + highlight(product.name, term) + '</a>' +
         (product.batchNumber ? '<small>Batch ' + highlight(product.batchNumber, term) + '</small>' : '') + '</div></div></td>' +
         '<td data-label="Category">' + highlight(getCategoryName(product.category), term) + '</td>' +
