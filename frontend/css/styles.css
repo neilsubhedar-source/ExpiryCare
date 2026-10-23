@@ -410,3 +410,26 @@ body { animation: page-in .3s var(--ease); } body.is-leaving { opacity: 0; trans
 
 .tracking-summary { margin: .75rem 0 1.25rem; font-size: .875rem; color: var(--muted, #64748b); line-height: 1.8; }
 .tracking-summary strong { color: var(--text, #10243a); }
+
+
+/* 19. Product-quality refinements: calm, high-contrast healthcare SaaS */
+::selection { background: #ccebe3; color: #0f2740; }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+.btn { box-shadow: 0 1px 1px rgba(15,39,64,.04); transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease); }
+.btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 7px 18px rgba(15,39,64,.10); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { cursor: not-allowed; opacity: .58; }
+.card, .stat-card, .settings-section, .profile-card, .product-card, .alert-card, .feature-card { transition: box-shadow .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease); }
+.card:hover, .stat-card:hover, .feature-card:hover { box-shadow: var(--sh-md); }
+input:not([type=checkbox]):not([type=radio]), select, textarea { transition: border-color .15s ease, box-shadow .15s ease, background .15s ease; }
+input:not([type=checkbox]):not([type=radio]):focus, select:focus, textarea:focus { border-color: var(--teal); box-shadow: var(--ring); outline: none; }
+img { height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media (max-width: 640px) {
+  .section-inner, .header-inner, .app-header-inner, .footer-inner, .hero-inner, .cta-inner { padding-left: 18px; padding-right: 18px; }
+  .app-main { padding: 22px 18px 40px; }
+  .btn { min-height: 42px; }
+}
