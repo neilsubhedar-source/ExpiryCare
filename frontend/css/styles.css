@@ -505,3 +505,13 @@ h3 { letter-spacing: -.025em; }
   .story-card, .problem-card, .btn { transition: none; }
   .story-card:hover, .problem-card:hover, .btn:hover { transform: none; }
 }
+
+/* Real product thumbnails in the inventory table */
+.product-cell { gap: 13px; align-items: center; }
+.product-thumb { display: block; width: 54px; height: 54px; flex: 0 0 54px; object-fit: cover; border-radius: 13px; background: #eef2eb; border: 1px solid #e5ebe2; }
+.product-cell-copy { min-width: 0; }
+.product-cell-copy > a, .product-cell-copy a { font-weight: 650; }
+@media (max-width: 640px) {
+  .product-thumb { width: 46px; height: 46px; flex-basis: 46px; border-radius: 11px; }
+  .product-cell { gap: 10px; }
+}
