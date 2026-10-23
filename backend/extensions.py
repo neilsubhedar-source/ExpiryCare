@@ -7,6 +7,7 @@ without compromising live production Firestore readiness.
 """
 import os
 import logging
+import json
 from typing import Optional, Dict, Any, List
 
 logger = logging.getLogger("expirycare.extensions")
@@ -152,6 +153,7 @@ def init_firebase(app=None) -> Any:
 
     firestore_enabled = os.getenv("FIRESTORE_ENABLED", "false").lower() in ("true", "1", "yes")
     cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "")
+    service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
 
     if firestore_enabled:
         try:
@@ -159,10 +161,15 @@ def init_firebase(app=None) -> Any:
             from firebase_admin import credentials, firestore
 
             if not firebase_admin._apps:
-                if cred_path and os.path.exists(cred_path):
+                if service_account_json:
+                    service_account_info = json.loads(service_account_json)
+                    cred = credentials.Certificate(service_account_info)
+                    _firebase_app = firebase_admin.initialize_app(cred)
+                    logger.info("Initialized Firebase Admin with FIREBASE_SERVICE_ACCOUNT_JSON.")
+                elif cred_path and os.path.exists(cred_path):
                     cred = credentials.Certificate(cred_path)
                     _firebase_app = firebase_admin.initialize_app(cred)
-                    logger.info("Initialized Firebase Admin with credential file: %s", cred_path)
+                    logger.info("Initialized Firebase Admin with credential file.")
                 else:
                     _firebase_app = firebase_admin.initialize_app()
                     logger.info("Initialized Firebase Admin with application default credentials")
