@@ -1314,6 +1314,14 @@ function initProductDetails() {
     document.title = product.name + " — ExpiryCare";
     setText("breadcrumb-product-name", product.name);
     setText("product-details-name", product.name);
+    const productPhoto = document.getElementById("product-details-photo");
+    if (productPhoto) {
+        const image = getProductImage(product);
+        productPhoto.src = image.src.replace("w=180&h=180", "w=520&h=520");
+        productPhoto.alt = image.alt + " for " + product.name;
+        productPhoto.hidden = false;
+        productPhoto.onerror = function () { this.hidden = true; };
+    }
     setText("product-details-category", getCategoryName(product.category));
     setText("product-details-quantity", product.quantity);
     setText("product-details-purchase-date", formatDate(product.purchaseDate));
