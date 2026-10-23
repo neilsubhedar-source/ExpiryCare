@@ -557,3 +557,15 @@ h3 { letter-spacing: -.025em; }
   .ri-editorial-photos img { height:95px; }
   .ri-editorial-photos figcaption { padding:9px; font-size:.74rem; }
 }
+
+/* Product detail: editorial photo paired with factual expiry information */
+.pd-identity { align-items:center; gap:22px; }
+.pd-product-photo { width:clamp(130px, 20vw, 220px); aspect-ratio:1; flex:0 0 auto; object-fit:cover; border-radius:22px; background:#eef2eb; border:1px solid var(--line); box-shadow:var(--sh-sm); }
+.pd-hero { gap:clamp(22px,4vw,48px); }
+.pd-status-card, .product-safety-note, .evidence-panel { border-radius:20px; border-color:var(--line); box-shadow:var(--sh-sm); }
+.product-detail-row { border-bottom-color:var(--line); }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline:none; box-shadow:var(--ring); }
+@media(max-width:620px) {
+  .pd-identity { align-items:flex-start; flex-wrap:wrap; }
+  .pd-product-photo { width:112px; border-radius:16px; }
+}
