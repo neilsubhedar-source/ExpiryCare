@@ -517,6 +517,22 @@ h3 { letter-spacing: -.025em; }
 }
 
 /* Retail Intelligence + customer catalogue: cohesive light premium treatment */
+.ri-wrap { width:100%; max-width:var(--max); margin:0 auto; padding:28px 24px 56px; }
+.catalog-wrap { width:100%; max-width:1120px; margin:0 auto; padding:28px 24px 56px; }
+.ri-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin:22px 0; }
+.ri-card { min-width:0; background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px; box-shadow:var(--sh-sm); }
+.ri-card strong { display:block; margin:6px 0; color:var(--navy); font-size:1.7rem; }
+.ri-panel h2 { margin:0 0 10px; }
+.ri-panel > .ri-muted { margin-bottom:16px; }
+.ri-pill { display:inline-flex; align-items:center; border-radius:999px; padding:5px 10px; background:var(--soft); color:var(--ink); font-size:.8rem; font-weight:650; }
+.ri-danger { color:var(--bad); } .ri-success { color:var(--ok); }
+.ri-form label { min-width:160px; flex:1; }
+.ri-form label:first-child { flex:2; }
+.ri-form .ri-chat-label { flex:1; min-width:240px; }
+.ri-form button, .ri-head > div:last-child a { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+.catalog-table-wrap { background:#fff; margin:16px 0; }
+.catalog-search input, .catalog-search select { width:100%; }
+.catalog-wrap > .catalog-note { margin:14px 0; }
 .ri-wrap, .catalog-wrap { color: var(--ink); }
 .ri-head, .catalog-head { padding: clamp(28px, 5vw, 54px); background: linear-gradient(135deg,#f0f5ed 0%,#fbfcf9 68%,#edf3f5 100%); border: 1px solid var(--line); border-radius: 26px; margin-bottom: 22px; }
 .ri-head h1, .catalog-head h1 { max-width: 780px; margin: .3em 0; }
@@ -556,6 +572,11 @@ h3 { letter-spacing: -.025em; }
   .ri-editorial-photos { gap:8px; }
   .ri-editorial-photos img { height:95px; }
   .ri-editorial-photos figcaption { padding:9px; font-size:.74rem; }
+}
+@media(max-width:560px) {
+  .ri-wrap, .catalog-wrap { padding:20px 16px 40px; }
+  .ri-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .ri-card { padding:15px; }
 }
 
 /* Product detail: editorial photo paired with factual expiry information */
