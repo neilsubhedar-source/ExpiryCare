@@ -1,3 +1,4 @@
+```python
 """ExpiryCare Backend Application Factory.
 
 Modular, production-ready Flask application supporting:
@@ -7,14 +8,17 @@ Modular, production-ready Flask application supporting:
 - Strict CORS configuration and payload validation
 - Centralized logging and error handling
 """
+
 import os
 import logging
+
 from flask import Flask, request
 from flask_cors import CORS
 
 from backend.config import get_config
 from backend.extensions import init_firebase
 from backend.middleware.error_handlers import register_error_handlers
+
 from backend.routes import (
     health_bp,
     auth_bp,
@@ -23,6 +27,9 @@ from backend.routes import (
     retail_bp,
     guidance_bp,
 )
+
+# Gmail SMTP notification routes
+from backend.routes.notification_routes import notification_bp
 
 
 def create_app(config_class=None) -> Flask:
@@ -37,18 +44,25 @@ def create_app(config_class=None) -> Flask:
     log_level = logging.DEBUG if app.config.get("DEBUG") else logging.INFO
     logging.basicConfig(
         level=log_level,
-        format="[%(asctime)s] %(levelname)s in %(name)s: %(message)s"
+        format="[%(asctime)s] %(levelname)s in %(name)s: %(message)s",
     )
 
     # Configure CORS
     allowed_origins = app.config.get("CORS_ORIGINS", [])
+
     if allowed_origins:
         CORS(
             app,
             resources={r"/api/*": {"origins": allowed_origins}},
             supports_credentials=True,
             methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-            allow_headers=["Content-Type", "Authorization", "X-User-Id", "X-User-Email", "X-User-Name"]
+            allow_headers=[
+                "Content-Type",
+                "Authorization",
+                "X-User-Id",
+                "X-User-Email",
+                "X-User-Name",
+            ],
         )
     else:
         # Default restrictive CORS in production if not explicitly set
@@ -68,8 +82,17 @@ def create_app(config_class=None) -> Flask:
     app.register_blueprint(retail_bp)
     app.register_blueprint(guidance_bp)
 
+    # Register Gmail SMTP notification API
+    app.register_blueprint(
+        notification_bp,
+        url_prefix="/api/notifications",
+    )
+
     # Optional static frontend serving for unified deployment
-    frontend_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
+    frontend_folder = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "frontend")
+    )
+
     if os.path.isdir(frontend_folder):
         from flask import send_from_directory
 
@@ -82,13 +105,18 @@ def create_app(config_class=None) -> Flask:
             if path.startswith("api/") or path == "api":
                 from flask import abort
                 abort(404)
+
             file_path = os.path.join(frontend_folder, path)
+
             if os.path.isfile(file_path):
                 return send_from_directory(frontend_folder, path)
+
             # Check if it corresponds to an HTML page without extension
             html_path = file_path + ".html"
+
             if os.path.isfile(html_path):
                 return send_from_directory(frontend_folder, path + ".html")
+
             from flask import abort
             abort(404)
 
@@ -96,16 +124,28 @@ def create_app(config_class=None) -> Flask:
     @app.before_request
     def log_request_info():
         if app.config.get("DEBUG") and not request.path.startswith("/api/health"):
-            app.logger.debug("Request: %s %s from %s", request.method, request.path, request.remote_addr)
+            app.logger.debug(
+                "Request: %s %s from %s",
+                request.method,
+                request.path,
+                request.remote_addr,
+            )
 
     return app
 
 
 app = create_app()
 
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "5000"))
     host = os.getenv("HOST", "0.0.0.0")
-    debug = os.getenv("FLASK_DEBUG", "false").lower() in ("true", "1", "yes")
+    debug = os.getenv("FLASK_DEBUG", "false").lower() in (
+        "true",
+        "1",
+        "yes",
+    )
+
     print(f"Starting ExpiryCare Backend server on http://{host}:{port}")
     app.run(host=host, port=port, debug=debug)
+```
