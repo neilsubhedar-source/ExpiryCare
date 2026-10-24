@@ -12,22 +12,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/app.js" defer></script>
 
-  <style>
-    .email-preview-section{padding:64px 24px;background:#f4f8fb}
-    .email-preview-wrap{max-width:1000px;margin:0 auto}
-    .email-preview-card{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;background:#fff;border:1px solid #dfe8ef;border-radius:20px;padding:clamp(22px,4vw,38px);box-shadow:0 12px 34px rgba(15,39,64,.07)}
-    .email-preview-kicker{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#e3f3ef;color:#0b5e4e;padding:6px 12px;font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-    .email-preview-card h2{margin:16px 0 12px;font-size:clamp(1.5rem,3vw,2rem)}
-    .email-preview-card p{color:#5a6c7d;line-height:1.7}
-    .email-preview-status{display:inline-block;margin-top:18px;padding:7px 11px;border:1px solid #f0d9a0;background:#fdf3df;color:#80550b;border-radius:999px;font-size:.82rem;font-weight:800}
-    .email-sample{align-self:center;border:1px solid #dfe8ef;border-radius:14px;overflow:hidden;background:#fff}
-    .email-sample-head{padding:13px 16px;background:#f4f8fb;border-bottom:1px solid #dfe8ef;font-weight:800;color:#0f2740}
-    .email-sample-body{padding:18px}
-    .email-sample-row{margin-bottom:10px;font-size:.88rem;color:#5a6c7d;overflow-wrap:anywhere}
-    .email-sample-row strong{color:#16293d}
-    .email-sample-note{font-size:.76rem!important;margin-top:14px;padding-top:12px;border-top:1px solid #dfe8ef}
-    @media(max-width:700px){.email-preview-card{grid-template-columns:1fr}.email-preview-section{padding:44px 18px}}
-  </style>
+
 
 </head>
 <body id="page-landing">
@@ -41,7 +26,6 @@
           <ul class="nav-list">
             <li><a href="index.html" aria-current="page">Home</a></li>
             <li><a href="about.html">How It Works</a></li>
-            <li><a href="#email-notifications-preview">Email Reminders</a></li>
             <li><a href="retail-catalog.html">Find Products in Stores</a></li>
           </ul>
         </nav>
@@ -51,29 +35,6 @@
   </header>
 
   <main id="main-content">
-    <section class="email-preview-section" id="email-notifications-preview" aria-labelledby="email-preview-title">
-      <div class="email-preview-wrap">
-        <div class="email-preview-card">
-          <div>
-            <span class="email-preview-kicker">✉ Email notification feature</span>
-            <h2 id="email-preview-title">Expiry reminders, delivered to your inbox.</h2>
-            <p>ExpiryCare is designed to support email reminders for products approaching their expiry dates, helping users take action on time and reduce avoidable waste.</p>
-            <p style="margin-top:12px">The planned Gmail SMTP integration can deliver reminders once the server email settings are configured.</p>
-            <span class="email-preview-status">Setup required · Email delivery not yet configured</span>
-          </div>
-          <div class="email-sample" aria-label="Sample email notification preview">
-            <div class="email-sample-head">Sample expiry reminder</div>
-            <div class="email-sample-body">
-              <div class="email-sample-row"><strong>To:</strong> Registered user</div>
-              <div class="email-sample-row"><strong>Subject:</strong> Expiry Reminder — Paracetamol</div>
-              <p style="color:#16293d">A sample reminder: Paracetamol is approaching its expiry date. Please check the product label and expiry details before use.</p>
-              <p class="email-sample-note">Preview only. This sample is not an email that has been sent. Actual delivery requires Gmail SMTP configuration.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-inner">
         <div class="hero-copy">
