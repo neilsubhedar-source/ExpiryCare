@@ -95,3 +95,21 @@ Once both services are deployed:
 2. Open your public frontend URL in the browser.
 3. Test personal inventory registration and product addition.
 4. Verify documents are written to the live Google Cloud Firestore console!
+
+
+## 5. Gmail SMTP notification setup
+
+The Alerts page can query backend email readiness and send a test email. In the Render backend service, add these environment variables:
+
+| Variable | Value |
+|---|---|
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `587` |
+| `SMTP_USER` | Your sending Gmail address |
+| `SMTP_PASSWORD` | A Google App Password (not your normal Gmail password) |
+| `SMTP_FROM_EMAIL` | The same sending Gmail address |
+| `SMTP_USE_TLS` | `true` |
+
+Create an App Password in the Google Account security settings after enabling 2-Step Verification. Never commit SMTP credentials to GitHub. Save the variables in Render and redeploy/restart the backend. Then open Alerts and use **Send Test Email**. A successful SMTP response means the server accepted the message; check the inbox and spam folder to confirm delivery.
+
+**Important limits:** notification preferences currently persist in the browser for that browser/device. Automated expiry-triggered emails are not yet scheduled or connected to the prototype's localStorage inventory. SMS delivery is not implemented; the SMS toggle is only a saved preference and does not send a text message.
