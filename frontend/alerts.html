@@ -107,8 +107,8 @@
                 <div><strong style="display:block;color:#16293d">SMS Notification</strong><span style="display:block;color:#5a6c7d;font-size:.9rem;margin-top:4px">Receive expiry reminders by text message.</span></div>
                 <label style="display:flex;align-items:center;gap:9px;white-space:nowrap"><input type="checkbox" id="sms-notification-toggle" name="smsNotifications"><span>Enable</span></label>
               </div>
-              <div class="form-actions" style="margin-top:20px"><button type="submit" class="btn btn-primary">Save Notification Preferences</button></div>
-              <p id="notification-settings-status" class="email-preview-status" role="status" aria-live="polite" style="display:block;white-space:normal;line-height:1.5">Email delivery requires Gmail SMTP setup. SMS delivery is not configured yet.</p>
+              <div class="form-actions" style="margin-top:20px;display:flex;flex-wrap:wrap;gap:12px"><button type="submit" class="btn btn-primary">Save Notification Preferences</button><button type="button" id="test-email-notification" class="btn btn-secondary">Send Test Email</button></div>
+              <p id="notification-settings-status" class="email-preview-status" role="status" aria-live="polite" style="display:block;white-space:normal;line-height:1.5">Checking notification service…</p>
             </form>
           </div>
         </div>
@@ -121,25 +121,55 @@
         var emailToggle = document.getElementById("email-notification-toggle");
         var smsToggle = document.getElementById("sms-notification-toggle");
         var status = document.getElementById("notification-settings-status");
+        var testButton = document.getElementById("test-email-notification");
         var key = "expirycare-delivery-notification-preferences";
+        var apiBase = window.EXPIRYCARE_API_BASE || (window.location.protocol === "file:" ? "http://127.0.0.1:5000/api" : window.location.origin + "/api");
+        var emailConfigured = false;
         try {
           var saved = JSON.parse(localStorage.getItem(key) || "{}");
           emailToggle.checked = saved.emailNotifications === true;
           smsToggle.checked = saved.smsNotifications === true;
         } catch (e) {}
+        function setStatus(message) { status.textContent = message; }
+        async function refreshStatus() {
+          try {
+            var response = await fetch(apiBase + "/notifications/status", { headers: { "Accept": "application/json" } });
+            var result = await response.json();
+            if (!response.ok || !result.success) throw new Error("Notification service is unavailable.");
+            var data = result.data || {};
+            emailConfigured = data.emailConfigured === true;
+            setStatus((emailConfigured ? "Gmail SMTP is configured." : "Email is not configured on the server yet. Add SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD and SMTP_FROM_EMAIL to the backend hosting environment.") +
+              (data.smsConfigured ? " SMS provider is configured." : " SMS delivery is not configured; this option currently saves your preference only.") +
+              " Automatic expiry-triggered sending still requires product-alert scheduler integration.");
+          } catch (error) {
+            emailConfigured = false;
+            setStatus("Cannot reach the notification backend. Check the backend deployment and /api routing. Email/SMS delivery cannot be confirmed.");
+          }
+        }
         form.addEventListener("submit", function (event) {
           event.preventDefault();
-          var preferences = {
-            emailNotifications: emailToggle.checked,
-            smsNotifications: smsToggle.checked
-          };
+          var preferences = { emailNotifications: emailToggle.checked, smsNotifications: smsToggle.checked };
           try {
             localStorage.setItem(key, JSON.stringify(preferences));
-            status.textContent = "Preferences saved on this device. Email delivery still requires Gmail SMTP setup; SMS delivery is not configured yet.";
-          } catch (e) {
-            status.textContent = "Could not save preferences in this browser. Email and SMS delivery are not configured yet.";
-          }
+            setStatus("Preferences saved on this browser. " + (emailConfigured ? "Gmail SMTP is configured; use Send Test Email to verify delivery." : "Email delivery still needs server SMTP configuration.") + " SMS delivery is not configured unless the backend reports an SMS provider.");
+          } catch (e) { setStatus("Could not save preferences in this browser. Check browser storage settings."); }
         });
+        testButton.addEventListener("click", async function () {
+          if (!emailConfigured) { setStatus("Test email not sent: Gmail SMTP is not configured on the backend."); return; }
+          testButton.disabled = true;
+          testButton.textContent = "Sending…";
+          try {
+            var user = JSON.parse(localStorage.getItem("currentUser") || sessionStorage.getItem("currentUser") || "null");
+            var recipient = user && user.email ? user.email : "";
+            if (!recipient || recipient.indexOf("@") < 1) throw new Error("Please sign in with a valid email address before requesting a test email.");
+            var response = await fetch(apiBase + "/notifications/test-email", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify({ email: recipient }) });
+            var result = await response.json();
+            if (!response.ok || !result.success) throw new Error(result.error || "Test email failed.");
+            setStatus("Test email accepted by SMTP server for " + recipient + ". Check your inbox and spam folder.");
+          } catch (error) { setStatus(error.message || "Test email failed. Check backend logs."); }
+          finally { testButton.disabled = false; testButton.textContent = "Send Test Email"; }
+        });
+        refreshStatus();
       })();
     </script>
   </main>
