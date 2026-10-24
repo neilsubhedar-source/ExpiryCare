@@ -71,11 +71,13 @@ def response_data(**kwargs):
 @notification_bp.route("/status", methods=["GET"])
 def notification_status():
     """Expose provider readiness without leaking credentials."""
-    sms_configured = all(os.environ.get(key, "").strip() for key in ("TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", "TWILIO_FROM_NUMBER"))
+    # SMS sending is not implemented in this project yet; credentials alone are not enough.
+    sms_configured = False
     return response_data(
         emailConfigured=smtp_is_configured(),
         smsConfigured=sms_configured,
         message="Gmail SMTP is configured." if smtp_is_configured() else "Email delivery requires Gmail SMTP environment variables.",
+        smsMessage="SMS delivery is not implemented yet.",
     )
 
 @notification_bp.route("/preferences", methods=["GET"])
