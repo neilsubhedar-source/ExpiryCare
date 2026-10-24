@@ -160,9 +160,11 @@
           testButton.textContent = "Sending…";
           try {
             var user = JSON.parse(localStorage.getItem("currentUser") || sessionStorage.getItem("currentUser") || "null");
-            var recipient = user && user.email ? user.email : "";
-            if (!recipient || recipient.indexOf("@") < 1) throw new Error("Please sign in with a valid email address before requesting a test email.");
-            var response = await fetch(apiBase + "/notifications/test-email", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify({ email: recipient }) });
+            var recipient = user && (user.email || user.emailAddress) ? (user.email || user.emailAddress) : "";
+            // If the prototype account has no email field, let the backend use SMTP_USER
+            // as the recipient so the test can still verify the configured SMTP connection.
+            var payload = recipient && recipient.indexOf("@") > 0 ? { email: recipient } : {};
+            var response = await fetch(apiBase + "/notifications/test-email", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) });
             var result = await response.json();
             if (!response.ok || !result.success) throw new Error(result.error || "Test email failed.");
             setStatus("Test email accepted by SMTP server for " + recipient + ". Check your inbox and spam folder.");
