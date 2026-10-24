@@ -123,7 +123,7 @@
         var status = document.getElementById("notification-settings-status");
         var testButton = document.getElementById("test-email-notification");
         var key = "expirycare-delivery-notification-preferences";
-        var apiBase = window.EXPIRYCARE_API_BASE || (window.location.protocol === "file:" ? "http://127.0.0.1:5000/api" : window.location.origin + "/api");
+        var apiBase = window.EXPIRYCARE_API_BASE || (function () { var host = window.location.hostname; var port = window.location.port; if (window.location.protocol === "file:") return "http://127.0.0.1:5000/api"; if ((host === "localhost" || host === "127.0.0.1") && ["5500", "5501", "8000", "8080"].indexOf(port) !== -1) return "http://127.0.0.1:5000/api"; return window.location.origin + "/api"; })();
         var emailConfigured = false;
         try {
           var saved = JSON.parse(localStorage.getItem(key) || "{}");
