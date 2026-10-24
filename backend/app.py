@@ -1,4 +1,3 @@
-```python
 """ExpiryCare Backend Application Factory.
 
 Modular, production-ready Flask application supporting:
@@ -148,4 +147,3 @@ if __name__ == "__main__":
 
     print(f"Starting ExpiryCare Backend server on http://{host}:{port}")
     app.run(host=host, port=port, debug=debug)
-```
