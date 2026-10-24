@@ -91,28 +91,57 @@
       </aside>
     </div>
 
-    <section class="email-preview-section" id="email-notifications-preview" aria-labelledby="email-preview-title">
+    <section class="email-preview-section" id="notification-settings" aria-labelledby="notification-settings-title">
       <div class="email-preview-wrap">
-        <div class="email-preview-card">
+        <div class="email-preview-card" style="grid-template-columns:1fr;max-width:720px;margin:0 auto">
           <div>
-            <span class="email-preview-kicker">✉ Email notification feature</span>
-            <h2 id="email-preview-title">Expiry reminders, delivered to your inbox.</h2>
-            <p>ExpiryCare is designed to support email reminders for products approaching their expiry dates, helping users take action on time and reduce avoidable waste.</p>
-            <p style="margin-top:12px">The planned Gmail SMTP integration can deliver reminders once the server email settings are configured.</p>
-            <span class="email-preview-status">Setup required · Email delivery not yet configured</span>
-          </div>
-          <div class="email-sample" aria-label="Sample email notification preview">
-            <div class="email-sample-head">Sample expiry reminder</div>
-            <div class="email-sample-body">
-              <div class="email-sample-row"><strong>To:</strong> Registered user</div>
-              <div class="email-sample-row"><strong>Subject:</strong> Expiry Reminder — Paracetamol</div>
-              <p style="color:#16293d">A sample reminder: Paracetamol is approaching its expiry date. Please check the product label and expiry details before use.</p>
-              <p class="email-sample-note">Preview only. This sample is not an email that has been sent. Actual delivery requires Gmail SMTP configuration.</p>
-            </div>
+            <span class="email-preview-kicker">Notification settings</span>
+            <h2 id="notification-settings-title">Choose how you want to receive expiry reminders.</h2>
+            <p>Turn email or SMS notifications on or off, then save your preferences.</p>
+            <form id="delivery-notification-form" style="margin-top:22px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid #dfe8ef">
+                <div><strong style="display:block;color:#16293d">Email Notification</strong><span style="display:block;color:#5a6c7d;font-size:.9rem;margin-top:4px">Receive expiry reminders by email.</span></div>
+                <label style="display:flex;align-items:center;gap:9px;white-space:nowrap"><input type="checkbox" id="email-notification-toggle" name="emailNotifications"><span>Enable</span></label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid #dfe8ef">
+                <div><strong style="display:block;color:#16293d">SMS Notification</strong><span style="display:block;color:#5a6c7d;font-size:.9rem;margin-top:4px">Receive expiry reminders by text message.</span></div>
+                <label style="display:flex;align-items:center;gap:9px;white-space:nowrap"><input type="checkbox" id="sms-notification-toggle" name="smsNotifications"><span>Enable</span></label>
+              </div>
+              <div class="form-actions" style="margin-top:20px"><button type="submit" class="btn btn-primary">Save Notification Preferences</button></div>
+              <p id="notification-settings-status" class="email-preview-status" role="status" aria-live="polite" style="display:block;white-space:normal;line-height:1.5">Email delivery requires Gmail SMTP setup. SMS delivery is not configured yet.</p>
+            </form>
           </div>
         </div>
       </div>
     </section>
+    <script>
+      (function () {
+        var form = document.getElementById("delivery-notification-form");
+        if (!form) return;
+        var emailToggle = document.getElementById("email-notification-toggle");
+        var smsToggle = document.getElementById("sms-notification-toggle");
+        var status = document.getElementById("notification-settings-status");
+        var key = "expirycare-delivery-notification-preferences";
+        try {
+          var saved = JSON.parse(localStorage.getItem(key) || "{}");
+          emailToggle.checked = saved.emailNotifications === true;
+          smsToggle.checked = saved.smsNotifications === true;
+        } catch (e) {}
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var preferences = {
+            emailNotifications: emailToggle.checked,
+            smsNotifications: smsToggle.checked
+          };
+          try {
+            localStorage.setItem(key, JSON.stringify(preferences));
+            status.textContent = "Preferences saved on this device. Email delivery still requires Gmail SMTP setup; SMS delivery is not configured yet.";
+          } catch (e) {
+            status.textContent = "Could not save preferences in this browser. Email and SMS delivery are not configured yet.";
+          }
+        });
+      })();
+    </script>
   </main>
   <footer class="app-footer">
     <p>&copy; 2026 ExpiryCare · College mini-project · Prototype data is stored only in this browser.</p>
